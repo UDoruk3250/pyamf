@@ -6,7 +6,7 @@ def singleBond():
     plt.plot(
         [float(atomList[int(bondList[-1][3]) - 1][3]), float(atomList[int(bondList[-1][4]) - 1][3])],
         [float(atomList[int(bondList[-1][3]) - 1][4]), float(atomList[int(bondList[-1][4]) - 1][4])],
-        color='g', linewidth=2)
+        color='g',zorder=1, linewidth=2)
 
 
 def doubleBond():
@@ -28,12 +28,12 @@ def doubleBond():
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result)),
               float(atomList[int(bondList[-1][4]) - 1][3]) + (distance * m.cos(result))],
              [float(atomList[int(bondList[-1][3]) - 1][4]) + (distance * m.sin(result + (45 * m.pi))),
-              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))], color='g', linewidth=2)
+              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))], zorder=1,  color='g', linewidth=2)
 
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result + (45 * m.pi))),
               float(atomList[int(bondList[-1][4]) - 1][3]) + (distance * m.cos(result + (45 * m.pi)))],
              [float(atomList[int(bondList[-1][3]) - 1][4]) + (distance * m.sin(result)),
-              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result))], color='g',
+              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result))], color='g', zorder=1,
              linewidth=2)
 
 
@@ -89,7 +89,7 @@ class Origin:
                         plt.plot(
                             [float(atomList[int(bondList[-1][3]) - 1][3]), float(atomList[int(bondList[-1][4]) - 1][3])],
                             [float(atomList[int(bondList[-1][3]) - 1][4]), float(atomList[int(bondList[-1][4]) - 1][4])],
-                            color='g', linewidth=2)
+                            color='g',zorder=2, linewidth=2)
 
                 else:
                     break
@@ -105,14 +105,14 @@ atomList = []
 condition = False
 bondList = []
 plt.axes().set_facecolor("black")
-with open("test.amf", "r") as f:
+with open("molecule.amf", "r") as f:
     # filelist = [(lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())]
     for line in f:
         if len(line) > 1:
             commandList.append(line.split())
             if commandList[-1][0] == "ORI":
                 builder = Origin("".join(commandList[-1][1:]))
-                file = open("test.amf", "r")
+                file = open("molecule.amf", "r")
                 # asd = (lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())
                 builder.add((lambda x: [a.replace("\n", "") for a in x])(file.readlines()[len(commandList):].copy()))
             if commandList[-1][0] == "STT":
