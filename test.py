@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
 import math as m
+import matplotlib.colors as mcolors
 
 
 def singleBond():
     plt.plot(
         [float(atomList[int(bondList[-1][3]) - 1][3]), float(atomList[int(bondList[-1][4]) - 1][3])],
         [float(atomList[int(bondList[-1][3]) - 1][4]), float(atomList[int(bondList[-1][4]) - 1][4])],
-        color='g',zorder=1, linewidth=2)
+        color='dimgrey', zorder=1, linewidth=2)
 
 
 def doubleBond():
@@ -22,18 +23,22 @@ def doubleBond():
     # Vector3(distance * Mathf.Cos(result + (45 * Mathf.PI)), distance * Mathf.Sin(result), 1
     # f));
 
-    result = m.atan(((float(atomList[int(bondList[-1][4]) - 1][3])) - (float(atomList[int(bondList[-1][3]) - 1][3]))) / ((float(atomList[int(bondList[-1][4]) - 1][4])) - (float(atomList[int(bondList[-1][3]) - 1][4]))))
+    result = m.atan(
+        ((float(atomList[int(bondList[-1][4]) - 1][3])) - (float(atomList[int(bondList[-1][3]) - 1][3]))) / (
+                    (float(atomList[int(bondList[-1][4]) - 1][4])) - (float(atomList[int(bondList[-1][3]) - 1][4]))))
     print(result)
     distance = 0.1
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result)),
               float(atomList[int(bondList[-1][4]) - 1][3]) + (distance * m.cos(result))],
              [float(atomList[int(bondList[-1][3]) - 1][4]) + (distance * m.sin(result + (45 * m.pi))),
-              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))], zorder=1,  color='g', linewidth=2)
+              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))], zorder=1,
+             color='dimgrey', linewidth=2)
 
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result + (45 * m.pi))),
               float(atomList[int(bondList[-1][4]) - 1][3]) + (distance * m.cos(result + (45 * m.pi)))],
              [float(atomList[int(bondList[-1][3]) - 1][4]) + (distance * m.sin(result)),
-              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result))], color='g', zorder=1,
+              float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result))], color='dimgrey',
+             zorder=1,
              linewidth=2)
 
 
@@ -75,8 +80,8 @@ class Origin:
                                           float(atomList[int(bondList[-1][4]) - 1][3]),
                                           float(atomList[int(bondList[-1][3]) - 1][4]),
                                           float(atomList[int(bondList[-1][4]) - 1][4])]
-                        print("X1: ",x1,", X2: ",x2, ", Y1: ",y1, ", Y2: ", y2)
-                        print(atomList[len(bondList) -1])
+                        print("X1: ", x1, ", X2: ", x2, ", Y1: ", y1, ", Y2: ", y2)
+                        print(atomList[len(bondList) - 1])
                         singleBond()
                     elif bondList[-1][2] == "2":
                         print("DOUBLE BOND")
@@ -87,9 +92,11 @@ class Origin:
                         # TODO: Add bond type: single, double, triple, quadruple, or aromatic
 
                         plt.plot(
-                            [float(atomList[int(bondList[-1][3]) - 1][3]), float(atomList[int(bondList[-1][4]) - 1][3])],
-                            [float(atomList[int(bondList[-1][3]) - 1][4]), float(atomList[int(bondList[-1][4]) - 1][4])],
-                            color='g',zorder=2, linewidth=2)
+                            [float(atomList[int(bondList[-1][3]) - 1][3]),
+                             float(atomList[int(bondList[-1][4]) - 1][3])],
+                            [float(atomList[int(bondList[-1][3]) - 1][4]),
+                             float(atomList[int(bondList[-1][4]) - 1][4])],
+                            color='g', zorder=2, linewidth=2)
 
                 else:
                     break
@@ -122,11 +129,13 @@ with open("molecule.amf", "r") as f:
                     atomList.append(line.split())
 
                     if atomList[-1][2] == '8':
-                        color = 'r'
+                        color = 'red'
                     elif atomList[-1][2] == '1':
-                        color = 'w'
+                        color = 'whitesmoke'
+                    elif atomList[-1][2] == '7':
+                        color = 'green'
                     else:
-                        color = 'b'
+                        color = 'blue'
                     plt.plot(int(commandList[-1][3]), int(commandList[-1][4]),
                              marker="o", color=color)
                 elif commandList[-1][0] == "INS":
