@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import math as m
-import matplotlib.colors as mcolors
 
 
 def singleBond():
@@ -11,7 +10,6 @@ def singleBond():
 
 
 def doubleBond():
-    distance = 10
     # TODO: add double bonding element; arctan() from MolecularModeller
     # float result = (
     #     Mathf.Atan((mousePos.x - startAtom.transform.position.x) / ((mousePos.y - startAtom.transform.position.y))));
@@ -26,7 +24,7 @@ def doubleBond():
     result = m.atan(
         ((float(atomList[int(bondList[-1][4]) - 1][3])) - (float(atomList[int(bondList[-1][3]) - 1][3]))) / (
                     (float(atomList[int(bondList[-1][4]) - 1][4])) - (float(atomList[int(bondList[-1][3]) - 1][4]))))
-    print(result)
+    # print(result)
     distance = 0.1
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result)),
               float(atomList[int(bondList[-1][4]) - 1][3]) + (distance * m.cos(result))],
@@ -52,7 +50,7 @@ class Origin:
         self.cList = {}
 
     def add(self, args: list):
-        print("Key: " + args.copy()[0])
+        # print("Key: " + args.copy()[0])
         self.cList[args.copy()[0]] = args.copy()
 
     def buildOriginPrefab(self, id, coords):
@@ -62,11 +60,13 @@ class Origin:
             if len(atom) > 1:
                 if atom.split()[0] == "ATOM":
                     if atom.split()[2] == '8':
-                        oricolor = 'r'
+                        oricolor = 'red'
                     elif atom.split()[2] == '1':
-                        oricolor = 'w'
+                        oricolor = 'whitesmoke'
+                    elif atom.split()[2] == '7':
+                        oricolor = "green"
                     else:
-                        oricolor = 'b'
+                        oricolor = 'blue'
                     atomList.append(["ATOM", atom.split()[1], atom.split()[2], str(float(atom.split()[3]) + float(x)),
                                      str(float(atom.split()[4]) + float(y))])
                     plt.plot(float(atom.split()[3]) + float(x), float(atom.split()[4]) + float(y),
@@ -76,12 +76,9 @@ class Origin:
                     bondList.append(atom.split())
 
                     if bondList[-1][2] == "1":
-                        x1, x2, y1, y2 = [float(atomList[int(bondList[-1][3]) - 1][3]),
-                                          float(atomList[int(bondList[-1][4]) - 1][3]),
-                                          float(atomList[int(bondList[-1][3]) - 1][4]),
-                                          float(atomList[int(bondList[-1][4]) - 1][4])]
-                        print("X1: ", x1, ", X2: ", x2, ", Y1: ", y1, ", Y2: ", y2)
-                        print(atomList[len(bondList) - 1])
+                       
+                        # print("X1: ", x1, ", X2: ", x2, ", Y1: ", y1, ", Y2: ", y2)
+                        # print(atomList[len(bondList) - 1])
                         singleBond()
                     elif bondList[-1][2] == "2":
                         print("DOUBLE BOND")
@@ -112,14 +109,14 @@ atomList = []
 condition = False
 bondList = []
 plt.axes().set_facecolor("black")
-with open("molecule.amf", "r") as f:
+with open("alanine.amf", "r") as f:
     # filelist = [(lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())]
     for line in f:
         if len(line) > 1:
             commandList.append(line.split())
             if commandList[-1][0] == "ORI":
                 builder = Origin("".join(commandList[-1][1:]))
-                file = open("molecule.amf", "r")
+                file = open("alanine.amf", "r")
                 # asd = (lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())
                 builder.add((lambda x: [a.replace("\n", "") for a in x])(file.readlines()[len(commandList):].copy()))
             if commandList[-1][0] == "STT":
@@ -127,7 +124,7 @@ with open("molecule.amf", "r") as f:
             if condition:
                 if commandList[-1][0] == "ATOM":
                     atomList.append(line.split())
-
+                    print(atomList[-1][2])
                     if atomList[-1][2] == '8':
                         color = 'red'
                     elif atomList[-1][2] == '1':
