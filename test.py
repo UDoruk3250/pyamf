@@ -64,7 +64,7 @@ class Origin:
                     elif atom.split()[2] == '1':
                         oricolor = 'whitesmoke'
                     elif atom.split()[2] == '7':
-                        oricolor = "green"
+                        oricolor = "limegreen"
                     else:
                         oricolor = 'blue'
                     atomList.append(["ATOM", atom.split()[1], atom.split()[2], str(float(atom.split()[3]) + float(x)),
@@ -76,7 +76,7 @@ class Origin:
                     bondList.append(atom.split())
 
                     if bondList[-1][2] == "1":
-                       
+
                         # print("X1: ", x1, ", X2: ", x2, ", Y1: ", y1, ", Y2: ", y2)
                         # print(atomList[len(bondList) - 1])
                         singleBond()
@@ -114,6 +114,8 @@ with open("alanine.amf", "r") as f:
     for line in f:
         if len(line) > 1:
             commandList.append(line.split())
+            if commandList[-1][0] == "END":
+                break
             if commandList[-1][0] == "ORI":
                 builder = Origin("".join(commandList[-1][1:]))
                 file = open("alanine.amf", "r")
@@ -130,7 +132,7 @@ with open("alanine.amf", "r") as f:
                     elif atomList[-1][2] == '1':
                         color = 'whitesmoke'
                     elif atomList[-1][2] == '7':
-                        color = 'green'
+                        color = 'limegreen'
                     else:
                         color = 'blue'
                     plt.plot(int(commandList[-1][3]), int(commandList[-1][4]),
