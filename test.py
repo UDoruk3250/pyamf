@@ -101,15 +101,17 @@ class Origin:
         bondList = []
 
 
+
 ##########################################################################
 
 
+MOLECULE = "alanine.amf"
 commandList = []
 atomList = []
 condition = False
 bondList = []
 plt.axes().set_facecolor("black")
-with open("alanine.amf", "r") as f:
+with open(MOLECULE, "r") as f:
     # filelist = [(lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())]
     for line in f:
         if len(line) > 1:
@@ -118,7 +120,7 @@ with open("alanine.amf", "r") as f:
                 break
             if commandList[-1][0] == "ORI":
                 builder = Origin("".join(commandList[-1][1:]))
-                file = open("alanine.amf", "r")
+                file = open(MOLECULE, "r")
                 # asd = (lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())
                 builder.add((lambda x: [a.replace("\n", "") for a in x])(file.readlines()[len(commandList):].copy()))
             if commandList[-1][0] == "STT":
