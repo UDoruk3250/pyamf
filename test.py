@@ -106,6 +106,8 @@ class Origin:
 
 
 MOLECULE = "alanine.amf"
+
+
 commandList = []
 atomList = []
 condition = False
