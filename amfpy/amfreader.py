@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 from OriginBuilder import *
+
+
 class Reader:
     MOLECULE = ""
 
