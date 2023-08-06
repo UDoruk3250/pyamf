@@ -51,3 +51,4 @@ class Reader:
                                 [float(atomList[int(bondList[-1][2]) - 1][4]),
                                  float(atomList[int(bondList[-1][3]) - 1][4])],
                                 color='g', linewidth=2)
+
