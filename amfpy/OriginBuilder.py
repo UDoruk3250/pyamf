@@ -47,8 +47,6 @@ class Origin:
                     elif self.bondList[-1][2] == "3":
                         bondbuilder.tripleBond(self.atomList, self.bondList)
                     else:
-                        # TODO: Add bond type: single, double, triple, quadruple, or aromatic
-
                         plt.plot(
                             [float(self.atomList[int(self.bondList[-1][3]) - 1][3]),
                              float(self.atomList[int(self.bondList[-1][4]) - 1][3])],
