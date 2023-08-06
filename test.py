@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math as m
+import amfpy
 
 
 def singleBond():
@@ -23,7 +24,7 @@ def doubleBond():
 
     result = m.atan(
         ((float(atomList[int(bondList[-1][4]) - 1][3])) - (float(atomList[int(bondList[-1][3]) - 1][3]))) / (
-                    (float(atomList[int(bondList[-1][4]) - 1][4])) - (float(atomList[int(bondList[-1][3]) - 1][4]))))
+                (float(atomList[int(bondList[-1][4]) - 1][4])) - (float(atomList[int(bondList[-1][3]) - 1][4]))))
     # print(result)
     distance = 0.1
     plt.plot([float(atomList[int(bondList[-1][3]) - 1][3]) + (distance * m.cos(result)),
@@ -101,13 +102,11 @@ class Origin:
         bondList = []
 
 
-
 ##########################################################################
 
 
 MOLECULE = "alanine.amf"
 
-
-
+amfpy.Reader(MOLECULE)
 
 plt.show()

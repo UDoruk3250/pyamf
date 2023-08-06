@@ -3,13 +3,11 @@ import math as m
 
 
 class BondBuilder:
-
     def singleBond(self, atomList: list, bondList: list):
         plt.plot(
             [float(atomList[int(bondList[-1][3]) - 1][3]), float(atomList[int(bondList[-1][4]) - 1][3])],
             [float(atomList[int(bondList[-1][3]) - 1][4]), float(atomList[int(bondList[-1][4]) - 1][4])],
             color='dimgrey', zorder=1, linewidth=2)
-
 
     def doubleBond(self, atomList: list, bondList: list):
         # float result = (
@@ -39,7 +37,6 @@ class BondBuilder:
                   float(atomList[int(bondList[-1][4]) - 1][4]) + (distance * m.sin(result))], color='dimgrey',
                  zorder=1,
                  linewidth=2)
-
 
     def tripleBond(self, atomList: list, bondList: list):
         pass

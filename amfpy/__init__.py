@@ -1,1 +1,1 @@
-from amfreader import *
+from .amfreader import *
