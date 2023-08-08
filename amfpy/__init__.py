@@ -1,5 +1,5 @@
 from .amfreader import *
-from Builder2D import *
+from .Builder2D import *
 
 
 def build():
