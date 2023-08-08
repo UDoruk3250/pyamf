@@ -15,7 +15,7 @@ class Origin:
         # print("Key: " + args.copy()[0])
         self.cList[args.copy()[0]] = args.copy()
 
-    def buildOriginPrefab(self, id, coords):
+    def buildOriginPrefab(self, id: int, coords):
         x, y, z = coords
         for atom in self.cList[id][1:]:
             if len(atom) > 1:
@@ -28,8 +28,9 @@ class Origin:
                         oricolor = "limegreen"
                     else:
                         oricolor = 'blue'
-                    self.atomList.append(["ATOM", atom.split()[1], atom.split()[2], str(float(atom.split()[3]) + float(x)),
-                                     str(float(atom.split()[4]) + float(y))])
+                    self.atomList.append(
+                        ["ATOM", atom.split()[1], atom.split()[2], str(float(atom.split()[3]) + float(x)),
+                         str(float(atom.split()[4]) + float(y))])
                     plt.plot(float(atom.split()[3]) + float(x), float(atom.split()[4]) + float(y),
                              marker="o", color=oricolor)
 
