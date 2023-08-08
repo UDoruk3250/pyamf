@@ -12,4 +12,4 @@ class Drawer:
 
     @staticmethod
     def plotAll():
-        plt.plot()
+        plt.show()
