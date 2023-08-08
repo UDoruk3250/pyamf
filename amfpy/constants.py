@@ -8,4 +8,4 @@ atomnumbertocolor = {
 
 
 def getAtomColor(number: int):
-    return atomnumbertocolor[number]
+    return atomnumbertocolor[int(number)]

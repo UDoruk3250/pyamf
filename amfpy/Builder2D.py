@@ -5,10 +5,10 @@ from .constants import *
 class Drawer:
 
     def plotAtom(self, x: float, y: float, atomnumber: int):
-        plt.plot(x, y, marker="o", color=getAtomColor(atomnumber))
+        plt.plot(x, y, marker="o", color=getAtomColor(atomnumber), zorder=2)
 
-    def plotBond(self, xlist: list, ylist: list, atomnumber: int):
-        plt.plot(xlist, ylist, color="g", linewidth=2)
+    def plotBond(self, xlist: list, ylist: list):
+        plt.plot(xlist, ylist, color="dimgrey", linewidth=2, zorder=1)
 
     @staticmethod
     def plotAll():
