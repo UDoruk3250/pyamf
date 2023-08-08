@@ -1,4 +1,6 @@
 from .amfreader import *
+from Builder2D import *
+
 
 def build():
-    pass
+    Drawer.plotAll()
