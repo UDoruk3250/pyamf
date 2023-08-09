@@ -16,7 +16,7 @@ class Origin:
         # print("Key: " + args.copy()[0])
         self.cList[args.copy()[0]] = args.copy()
 
-    def buildOriginPrefab(self, id: int, coords):
+    def buildOriginPrefab(self, id: str, coords):
         x, y, z = coords
         for atom in self.cList[id][1:]:
             if len(atom) > 1:
