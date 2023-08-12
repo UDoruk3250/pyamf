@@ -9,7 +9,7 @@ Absolute Molecule File (*.amf) library for Python
 The library must be installed to the machine by running the following command:
 
  ``` bash
- pip install pyamf
+ pip install pyamf-python
  ```
 
 
