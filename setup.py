@@ -2,7 +2,8 @@ from setuptools import setup, find_packages
 
 VERSION = '0.1.2'
 DESCRIPTION = 'Absolute Molecule File library extension for python'
-LONG_DESCRIPTION = 'Absolute Molecule File library extension for python. Absolute Molecule File (*.amf)'
+LONG_DESCRIPTION = 'Absolute Molecule File library extension for python. Absolute Molecule File (*.amf) is a specific ' \
+                   'kind of a filetype that allows people to create molecules and proteins easily.'
 
 setup(name='amfpy-python',
       version=VERSION,
