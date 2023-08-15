@@ -5,20 +5,23 @@ bondbuilder = BondBuilder()
 
 
 class Origin:
+
+    cList = {}
+
     def __init__(self, oriname):
         self.drawer = Drawer()
         self.name = oriname
-        self.cList = {}
         self.atomList = []
         self.bondList = []
 
     def add(self, args: list):
-        # print("Key: " + args.copy()[0])
         self.cList[args.copy()[0]] = args.copy()
+        print(args)
 
-    def buildOriginPrefab(self, id: str, coords):
+    def buildOriginPrefab(self, identifier: str, coords):
         x, y, z = coords
-        for atom in self.cList[id][1:]:
+        print(self.cList[identifier][1:])
+        for atom in self.cList[identifier][1:]:
             if len(atom) > 1:
                 if atom.split()[0] == "ATOM":
                     self.atomList.append(
@@ -37,7 +40,6 @@ class Origin:
                         # print(self.atomList[len(self.bondList) - 1])
                         bondbuilder.singleBond(self.atomList, self.bondList)
                     elif self.bondList[-1][2] == "2":
-                        print("DOUBLE BOND")
                         bondbuilder.doubleBond(self.atomList, self.bondList)
                     elif self.bondList[-1][2] == "3":
                         bondbuilder.tripleBond(self.atomList, self.bondList)
@@ -50,3 +52,5 @@ class Origin:
 
                 else:
                     break
+            else:
+                list(self.cList[identifier]).remove(atom)
