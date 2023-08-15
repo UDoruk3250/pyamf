@@ -14,17 +14,24 @@ class Reader:
         plt.axes().set_facecolor("black")
         with open(self.MOLECULE, "r") as f:
             # filelist = [(lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())]
-            for line in f:
+            for enum,line in enumerate(f):
                 if len(line) > 1:
                     commandList.append(line.split())
                     if commandList[-1][0] == "END":
                         break
                     if commandList[-1][0] == "ORI":
                         builder = Origin("".join(commandList[-1][1:]))
-                        file = open(MOLECULE, "r")
+                        file = open(MOLECULE, "r").readlines()[enum:]
+
                         # asd = (lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())
+                        i = 0
+                        while "STOP" not in file[i]:
+                            i += 1
+
                         builder.add(
-                            (lambda x: [a.replace("\n", "") for a in x])(file.readlines()[len(commandList):].copy()))
+                            (lambda x: [a.replace("\n", "") for a in x])(file[:i]
+                                                                         .copy()))
+
                     if commandList[-1][0] == "STT":
                         condition = True
                     if condition:
@@ -51,4 +58,3 @@ class Reader:
                                 [float(atomList[int(bondList[-1][2]) - 1][4]),
                                  float(atomList[int(bondList[-1][3]) - 1][4])],
                                 color='g', linewidth=2)
-
