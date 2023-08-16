@@ -44,7 +44,7 @@ class Reader:
                                 color = 'whitesmoke'
                             elif atomList[-1][2] == '7':
                                 color = 'limegreen'
-                            else:
+                            elif atomList[-1][2] == '6':
                                 color = 'blue'
                             plt.plot(int(commandList[-1][3]), int(commandList[-1][4]),
                                      marker="o", color=color)
