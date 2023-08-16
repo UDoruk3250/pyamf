@@ -1,27 +1,26 @@
-import matplotlib.pyplot as plt
 from .OriginBuilder import *
 
 
 class Reader:
 
-    def __init__(self, MOLECULE):
-        self.MOLECULE = MOLECULE
+    def __init__(self, molecule):
+        self.MOLECULE = molecule
 
-        commandList = []
-        atomList = []
+        commandlist = []
+        atomlist = []
         condition = False
-        bondList = []
+        bondlist = []
         plt.axes().set_facecolor("black")
         with open(self.MOLECULE, "r") as f:
             # filelist = [(lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())]
-            for enum,line in enumerate(f):
+            for enum, line in enumerate(f):
                 if len(line) > 1:
-                    commandList.append(line.split())
-                    if commandList[-1][0] == "END":
+                    commandlist.append(line.split())
+                    if commandlist[-1][0] == "END":
                         break
-                    if commandList[-1][0] == "ORI":
-                        builder = Origin("".join(commandList[-1][1:]))
-                        file = open(MOLECULE, "r").readlines()[enum:]
+                    if commandlist[-1][0] == "ORI":
+                        builder = Origin("".join(commandlist[-1][1:]))
+                        file = open(molecule, "r").readlines()[enum:]
 
                         # asd = (lambda x: [a.replace("\n", "") for a in x])(f.readlines()[len(commandList):].copy())
                         i = 0
@@ -32,31 +31,31 @@ class Reader:
                             (lambda x: [a.replace("\n", "") for a in x])(file[:i]
                                                                          .copy()))
 
-                    if commandList[-1][0] == "STT":
+                    if commandlist[-1][0] == "STT":
                         condition = True
                     if condition:
-                        if commandList[-1][0] == "ATOM":
-                            atomList.append(line.split())
-                            print(atomList[-1][2])
-                            if atomList[-1][2] == '8':
+                        if commandlist[-1][0] == "ATOM":
+                            atomlist.append(line.split())
+                            print(atomlist[-1][2])
+                            if atomlist[-1][2] == '8':
                                 color = 'red'
-                            elif atomList[-1][2] == '1':
+                            elif atomlist[-1][2] == '1':
                                 color = 'whitesmoke'
-                            elif atomList[-1][2] == '7':
+                            elif atomlist[-1][2] == '7':
                                 color = 'limegreen'
-                            elif atomList[-1][2] == '6':
+                            elif atomlist[-1][2] == '6':
                                 color = 'blue'
                             else:
                                 color = 'pink'
-                            plt.plot(int(commandList[-1][3]), int(commandList[-1][4]),
+                            plt.plot(int(commandlist[-1][3]), int(commandlist[-1][4]),
                                      marker="o", color=color)
-                        elif commandList[-1][0] == "INS":
-                            builder.buildOriginPrefab("ORI " + commandList[-1][1], commandList[-1][2:])
-                        elif commandList[-1][0] == "BND":
-                            bondList.append(line.split())
+                        elif commandlist[-1][0] == "INS":
+                            builder.buildOriginPrefab("ORI " + commandlist[-1][1], commandlist[-1][2:])
+                        elif commandlist[-1][0] == "BND":
+                            bondlist.append(line.split())
                             plt.plot(
-                                [float(atomList[int(bondList[-1][2]) - 1][3]),
-                                 float(atomList[int(bondList[-1][3]) - 1][3])],
-                                [float(atomList[int(bondList[-1][2]) - 1][4]),
-                                 float(atomList[int(bondList[-1][3]) - 1][4])],
+                                [float(atomlist[int(bondlist[-1][2]) - 1][3]),
+                                 float(atomlist[int(bondlist[-1][3]) - 1][3])],
+                                [float(atomlist[int(bondlist[-1][2]) - 1][4]),
+                                 float(atomlist[int(bondlist[-1][3]) - 1][4])],
                                 color='g', linewidth=2)
