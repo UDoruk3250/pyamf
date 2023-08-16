@@ -46,6 +46,8 @@ class Reader:
                                 color = 'limegreen'
                             elif atomList[-1][2] == '6':
                                 color = 'blue'
+                            else:
+                                color = 'pink'
                             plt.plot(int(commandList[-1][3]), int(commandList[-1][4]),
                                      marker="o", color=color)
                         elif commandList[-1][0] == "INS":
