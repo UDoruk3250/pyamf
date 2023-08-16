@@ -54,3 +54,5 @@ class Origin:
                     break
             else:
                 list(self.cList[identifier]).remove(atom)
+        self.atomList = []
+        self.bondList = []
