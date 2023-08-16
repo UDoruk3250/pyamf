@@ -1,7 +1,7 @@
 import amfpy
 
 
-MOLECULE = "alanine.amf"
+MOLECULE = "molecule.amf"
 
 amfpy.Reader(MOLECULE)
 amfpy.build()
