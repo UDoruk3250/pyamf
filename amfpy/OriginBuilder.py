@@ -16,11 +16,11 @@ class Origin:
 
     def add(self, args: list):
         self.cList[args.copy()[0]] = args.copy()
-        print(args)
+        # print(args)
 
     def buildOriginPrefab(self, identifier: str, coords):
         x, y, z = coords
-        print(self.cList[identifier][1:])
+        #print(self.cList[identifier][1:])
         for atom in self.cList[identifier][1:]:
             if len(atom) > 1:
                 if atom.split()[0] == "ATOM":
