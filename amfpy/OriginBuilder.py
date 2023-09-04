@@ -13,6 +13,8 @@ class Origin:
         self.name = oriname
         self.atomList = []
         self.bondList = []
+        self.a = []
+        self.b = []
 
     def add(self, args: list):
         self.cList[args.copy()[0]] = args.copy()
@@ -52,5 +54,8 @@ class Origin:
                     break
             else:
                 list(self.cList[identifier]).remove(atom)
+        self.a = self.atomList.copy()
+        self.b = self.bondList.copy()
         self.atomList = []
         self.bondList = []
+        return [self.a, self.b]
