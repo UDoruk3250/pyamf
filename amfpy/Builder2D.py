@@ -15,4 +15,4 @@ class Drawer:
 
     @staticmethod
     def plotAll():
-        plt.show(block=True)
+        plt.show(block=False)
