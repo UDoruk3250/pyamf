@@ -5,9 +5,10 @@ atomlist = []
 condition = False
 bondlist = []
 
-class Reader:
 
+class Reader:
     def __init__(self, molecule):
+        global atomlist,bondlist,commandlist
         self.MOLECULE = molecule
         self.commandlist = []
         self.atomlist = []
@@ -39,7 +40,7 @@ class Reader:
                             self.atomlist.append(line.split())
                             if self.atomlist[-1][2] == '8':
                                 color = 'red'
-                            color = getAtomColor(self.commandlist[-1][2])
+                            color = getAtomColor(int(self.commandlist[-1][2]))
                             plt.plot(int(self.commandlist[-1][3]), int(self.commandlist[-1][4]),
                                      marker="o", color=color)
                         elif self.commandlist[-1][0] == "INS":
@@ -53,6 +54,5 @@ class Reader:
                                  float(self.atomlist[int(self.bondlist[-1][3]) - 1][4])],
                                 color='g', linewidth=2)
 
-        commandlist = self.commandlist
-        bondlist = self.bondlist
-        atomlist = self.atomlist
+    def getCommandList(self):
+        return self.commandlist
