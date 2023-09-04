@@ -3,4 +3,5 @@ from .amfreader import *
 
 
 def animate2D(f: int):
-    print(commandlist)
+    # for i in range(f):
+    print()
