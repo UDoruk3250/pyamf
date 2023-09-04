@@ -5,9 +5,10 @@ from time import sleep
 from multiprocessing import Process
 
 
-def build():
-    Drawer.plotAll()
+def build(animate=False, frate=0):
+    if not animate:
+        Drawer.plotAll()
+    else:
+        animate2D(frate)
 
 
-def animate(f: int):
-    animate2D(f)
