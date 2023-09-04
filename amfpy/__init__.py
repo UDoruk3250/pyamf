@@ -8,6 +8,6 @@ from multiprocessing import Process
 def build():
     Drawer.plotAll()
 
+
 def animate(f: int):
-    print("HEY!!")
     animate2D(f)
