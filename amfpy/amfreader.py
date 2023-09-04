@@ -1,10 +1,11 @@
 from .OriginBuilder import *
 from .constants import *
 
-commandlist = []
-atomlist = []
 condition = False
+
+atomlist = []
 bondlist = []
+commandlist = []
 
 
 class Reader:
@@ -46,6 +47,10 @@ class Reader:
                         elif self.commandList[-1][0] == "INS":
                             self.atomList, self.bondList = builder.buildOriginPrefab("ORI " + self.commandList[-1][1],
                                                                                      self.commandList[-1][2:])
+                            self.setLists()
+                            # atomlist = self.atomList.copy()
+                            # bondlist = self.bondList.copy()
+
                         elif self.commandList[-1][0] == "BND":
                             self.bondList.append(line.split())
                             bondlist.append(self.bondList[-1])
@@ -56,3 +61,8 @@ class Reader:
                                  float(self.atomList[int(self.bondList[-1][3]) - 1][4])],
                                 color='g', linewidth=2)
                     commandlist.append(self.commandList[-1])
+
+    def setLists(self):
+        global atomlist, bondlist
+        atomlist = self.atomList
+        bondlist = self.bondList
