@@ -1,5 +1,5 @@
 from .constants import *
-from .amfreader import *
+from .amfreader import Reader
 
 bondLength = []
 
@@ -9,6 +9,8 @@ CorruptedFileError = Exception("The *.amf file has been corrupted or formatted w
 def animate2D(f: int):
     # for i in range(f):
     atomlist, bondlist = Reader.getLists()
-    if len(atomlist) != len(bondlist)+1:
+    if len(atomlist) != len(bondlist):
         raise CorruptedFileError
-        # print("Step " + str(i))
+    print("a")
+
+    # print("Step " + str(i))
