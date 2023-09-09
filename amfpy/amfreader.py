@@ -48,8 +48,6 @@ class Reader:
                             self.atomList, self.bondList = builder.buildOriginPrefab("ORI " + self.commandList[-1][1],
                                                                                      self.commandList[-1][2:])
                             self.setLists()
-                            # atomlist = self.atomList.copy()
-                            # bondlist = self.bondList.copy()
 
                         elif self.commandList[-1][0] == "BND":
                             self.bondList.append(line.split())
@@ -64,5 +62,11 @@ class Reader:
 
     def setLists(self):
         global atomlist, bondlist
-        atomlist = self.atomList
-        bondlist = self.bondList
+        atomlist.append(self.atomList.copy())
+        bondlist.append(self.bondList.copy())
+
+    @staticmethod
+    def getLists():
+        global atomlist, bondlist
+        return [atomlist, bondlist]
+
