@@ -1,6 +1,6 @@
 from .constants import *
 from .amfreader import Reader
-
+from math import sqrt
 bondLength = []
 
 CorruptedFileError = Exception("The *.amf file has been corrupted or formatted wrong. Check the file again.")
@@ -19,11 +19,13 @@ def animate2D(f: int):
     if len(atomlists) != len(bondlists):
         raise CorruptedFileError
     for atomlist, bondlist in zip(atomlists, bondlists):
-        for i in range(f // 60):
+        for i in range(f // (60 * len(atomlist))):
             for bond in bondlist:
                 atom1 = Atom(atomlist[int(bond[3]) - 1])
                 atom2 = Atom(atomlist[int(bond[4]) - 1])
                 distance = calculateDistance(atom1.x, atom2.x, atom1.y, atom2.y)
+                extra = OPTIMUM_DISTANCE - distance
+                change = (extra/abs(extra)) * sqrt(abs(extra))
 
 
     # print("Step " + str(i))
