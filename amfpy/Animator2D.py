@@ -1,20 +1,20 @@
 from .constants import *
 from .amfreader import Reader
 from .Builder2D import Drawer
-from math import sqrt, atan2, cos, sin
+from time import sleep
+from math import sqrt, atan2, cos, sin,pi
 
 bondLength = []
 
 CorruptedFileError = Exception("The *.amf file has been corrupted or formatted wrong. Check the file again.")
 
 
-
 class Atom:
     def __init__(self, thelist):  # TODO: add atom number as well.
-        self.id = thelist[1]
-        self.atomnumber = thelist[2]
-        self.x = thelist[3]
-        self.y = thelist[4]
+        self.id = float(thelist[1])
+        self.atomnumber = float(thelist[2])
+        self.x = float(thelist[3])
+        self.y = float(thelist[4])
 
 
 def animate2D(f: int):
@@ -30,9 +30,13 @@ def animate2D(f: int):
                 distance = calculateDistance(atom1.x, atom2.x, atom1.y, atom2.y)
                 extra = OPTIMUM_DISTANCE - distance
                 change = (extra / abs(extra)) * sqrt(abs(extra))
-                angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x)
-                incrementX = change * cos(angle)
-                incrementY = change * sin(angle)
-                self.drawer.clear()
-                Drawer.buildFromLists()
-    # print("Step " + str(i))
+                angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x) * 180/pi
+                increment_x = change * cos(angle)
+                increment_y = change * sin(angle)
+                atomlist[int(bond[3]) - 1][3:] = [atom1.x + increment_x, atom1.y + increment_y]
+                atomlist[int(bond[4]) - 1][3:] = [atom2.x - increment_x, atom2.y - increment_y]
+
+                drawer.clear()
+                drawer.buildFromLists(atomlist, bondlist)
+                sleep(1)
+            print("Step " + str(i))
