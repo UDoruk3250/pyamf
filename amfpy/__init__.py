@@ -9,3 +9,4 @@ def build(animate=False, frate=0):
     else:
         Drawer.plotAll(False)
         animate2D(frate)
+        Drawer.plotAll(True)
