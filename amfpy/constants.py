@@ -8,6 +8,8 @@ atomnumbertocolor = {
     8: "red"
 }
 
+OPTIMUM_DISTANCE = 74
+
 
 def getAtomColor(number: int):
     if atomnumbertocolor[int(number)]:
