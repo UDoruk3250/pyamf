@@ -5,4 +5,4 @@ MOLECULE = "nucleotides.amf"
 
 amfpy.Reader(MOLECULE)
 
-amfpy.build(animate=True, frate=10000)
+amfpy.build(animate=True, frate=1200)
