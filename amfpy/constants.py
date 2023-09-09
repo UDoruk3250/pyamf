@@ -18,5 +18,5 @@ def getAtomColor(number: int):
         return "firebrick"
 
 
-def calculateDistance(x1: int, x2: int, y1: int, y2: int):
+def calculateDistance(x1: float, x2: float, y1: float, y2: float):
     return m.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
