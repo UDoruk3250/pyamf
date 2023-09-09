@@ -8,6 +8,8 @@ class Drawer:
 
     def clear(self):
         plt.clf()
+        plt.axes().set_facecolor("black")
+
     def plotAtom(self, x: float, y: float, atomnumber: int):
         plt.plot(x, y, marker="o", color=getAtomColor(atomnumber), zorder=2)
 
@@ -17,12 +19,12 @@ class Drawer:
     @staticmethod
     def buildFromLists(atomlist, bondlist):
         for atom in atomlist:
-            plt.plot(int(atom[3]), int(atom[4]), getAtomColor(int(atom[2])))
+            Drawer.plotAtom(Drawer(), float(atom[3]), float(atom[4]), int(atom[2]))
         for bond in bondlist:
-            Drawer.plotBond(
-                [float(atomlist[int(bond[3]) - 1][3]), float(atomlist[int(bond[4]) - 1][3])],
-                [float(atomlist[int(bond[3]) - 1][4]), float(atomlist[int(bond[4]) - 1][4])]
-            )
+            Drawer.plotBond(Drawer(),
+                            [float(atomlist[int(bond[3]) - 1][3]), float(atomlist[int(bond[4]) - 1][3])],
+                            [float(atomlist[int(bond[3]) - 1][4]), float(atomlist[int(bond[4]) - 1][4])])
+        Drawer.plotAll(block=False)
 
     @staticmethod
     def plotAll(block: bool):
