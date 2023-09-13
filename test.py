@@ -1,7 +1,7 @@
 import amfpy
 
 
-MOLECULE = "nucleotides.amf"
+MOLECULE = "molecule.amf"
 
 amfpy.Reader(MOLECULE)
 
