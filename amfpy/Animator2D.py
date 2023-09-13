@@ -23,13 +23,13 @@ def animate2D(f: int):
     if len(atomlists) != len(bondlists):
         raise CorruptedFileError
     for atomlist, bondlist in zip(atomlists, bondlists):
-        for i in range(f // (60 * len(atomlist))):
+        for i in range(f // (60 * len(atomlists))):
             for bond in bondlist:
                 atom1 = Atom(atomlist[int(bond[3]) - 1])
                 atom2 = Atom(atomlist[int(bond[4]) - 1])
                 distance = calculateDistance(atom1.x, atom2.x, atom1.y, atom2.y)
                 extra = OPTIMUM_DISTANCE - distance
-                change = (extra / abs(extra)) * sqrt(abs(extra))
+                change = extra/2  # (extra / abs(extra)) * sqrt(abs(extra))
                 angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x) * 180/pi
                 increment_x = change * cos(angle)
                 increment_y = change * sin(angle)
@@ -38,5 +38,4 @@ def animate2D(f: int):
 
                 drawer.clear()
                 drawer.buildFromLists(atomlist, bondlist)
-                sleep(1)
             print("Step " + str(i))
