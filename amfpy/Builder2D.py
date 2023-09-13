@@ -13,8 +13,8 @@ class Drawer:
     def plotAtom(self, x: float, y: float, atomnumber: int):
         plt.plot(x, y, marker="o", color=getAtomColor(atomnumber), zorder=2)
 
-    def plotBond(self, xlist: list, ylist: list):
-        plt.plot(xlist, ylist, color="dimgrey", linewidth=2, zorder=1)
+    def plotBond(self, xlist: list, ylist: list, color="dimgrey"):
+        plt.plot(xlist, ylist, color=color, linewidth=2, zorder=1)
 
     @staticmethod
     def buildFromLists(atomlist, bondlist):
@@ -23,9 +23,11 @@ class Drawer:
         for bond in bondlist:
             Drawer.plotBond(Drawer(),
                             [float(atomlist[int(bond[3]) - 1][3]), float(atomlist[int(bond[4]) - 1][3])],
-                            [float(atomlist[int(bond[3]) - 1][4]), float(atomlist[int(bond[4]) - 1][4])])
+                            [float(atomlist[int(bond[3]) - 1][4]), float(atomlist[int(bond[4]) - 1][4])], color='red')
         Drawer.plotAll(block=False)
 
     @staticmethod
     def plotAll(block: bool):
+        ax = plt.gca()
+        ax.set_aspect('equal', adjustable='box')
         plt.show(block=block)
