@@ -38,4 +38,5 @@ def animate2D(f: int):
 
                 drawer.clear()
                 drawer.buildFromLists(atomlist, bondlist)
+
             print("Step " + str(i))
