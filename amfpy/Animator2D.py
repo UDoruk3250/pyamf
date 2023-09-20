@@ -1,7 +1,6 @@
 from .constants import *
 from .amfreader import Reader
 from .Builder2D import Drawer
-from time import sleep
 from math import sqrt, atan2, cos, sin,pi
 
 bondLength = []
@@ -29,7 +28,8 @@ def animate2D(f: int):
                 atom2 = Atom(atomlist[int(bond[4]) - 1])
                 distance = calculateDistance(atom1.x, atom2.x, atom1.y, atom2.y)
                 extra = OPTIMUM_DISTANCE - distance
-                change = extra/2  # (extra / abs(extra)) * sqrt(abs(extra))
+                change = extra/2
+                # (extra / abs(extra)) * sqrt(abs(extra))
                 angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x) * 180/pi
                 increment_x = change * cos(angle)
                 increment_y = change * sin(angle)
