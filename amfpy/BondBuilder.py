@@ -22,12 +22,6 @@ class BondBuilder:
                              [float(atomlist[int(bondlist[-1][3]) - 1][4]) + (distance * m.sin(result + (45 * m.pi))),
                               float(atomlist[int(bondlist[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))])
 
-        # plt.plot([float(atomlist[int(bondlist[-1][3]) - 1][3]) + (distance * m.cos(result)),
-        #           float(atomlist[int(bondlist[-1][4]) - 1][3]) + (distance * m.cos(result))],
-        #          [float(atomlist[int(bondlist[-1][3]) - 1][4]) + (distance * m.sin(result + (45 * m.pi))),
-        #           float(atomlist[int(bondlist[-1][4]) - 1][4]) + (distance * m.sin(result + (45 * m.pi)))], zorder=1,
-        #          color='dimgrey', linewidth=2)
-
         self.drawer.plotBond([float(atomlist[int(bondlist[-1][3]) - 1][3]) + (distance * m.cos(result + (45 * m.pi))),
                               float(atomlist[int(bondlist[-1][4]) - 1][3]) + (distance * m.cos(result + (45 * m.pi)))],
                              [float(atomlist[int(bondlist[-1][3]) - 1][4]) + (distance * m.sin(result)),
