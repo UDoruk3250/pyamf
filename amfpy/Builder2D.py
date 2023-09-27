@@ -27,7 +27,10 @@ class Drawer:
         Drawer.plotAll(block=False)
 
     @staticmethod
-    def plotAll(block: bool):
+    def plotAll(block: bool, xmax=0, ymax=0):
+        if block:
+            if xmax > ymax:  # TODO: Equalize the x and y axis
+                pass
         ax = plt.gca()
         ax.set_aspect('equal', adjustable='box')
         plt.show(block=block)
