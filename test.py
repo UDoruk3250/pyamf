@@ -5,4 +5,4 @@ MOLECULE = "molecule.amf"
 
 amfpy.Reader(MOLECULE)
 
-amfpy.build(animate=True, frate=120)
+amfpy.build(animate=False, frate=120)
