@@ -10,10 +10,10 @@ class Drawer:
         plt.clf()
         plt.axes().set_facecolor("black")
 
-    def plotatom(self, x: float, y: float, atomnumber: int):
+    def plotAtom(self, x: float, y: float, atomnumber: int):
         plt.plot(x, y, marker="o", color=getAtomColor(atomnumber), zorder=2)
 
-    def plotbond(self, xlist: list, ylist: list, color="dimgrey"):
+    def plotBond(self, xlist: list, ylist: list, color="dimgrey"):
         plt.plot(xlist, ylist, color=color, linewidth=2, zorder=1)
 
     @staticmethod
