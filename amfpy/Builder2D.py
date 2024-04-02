@@ -32,5 +32,6 @@ class Drawer:
             if xmax > ymax:  # TODO: Equalize the x and y axis
                 pass
         ax = plt.gca()
+        ax.set_facecolor("black")
         ax.set_aspect('equal', adjustable='box')
         plt.show(block=block)

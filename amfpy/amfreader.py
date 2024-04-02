@@ -17,7 +17,6 @@ class Reader:
         self.condition = False
         self.bondList = []
 
-        plt.axes().set_facecolor("black")
         with open(self.MOLECULE, "r") as f:
             for enum, line in enumerate(f):
                 if len(line) > 1:

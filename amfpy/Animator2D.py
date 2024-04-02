@@ -1,7 +1,7 @@
 from .constants import *
 from .amfreader import Reader
 from .Builder2D import Drawer
-from math import sqrt, atan2, cos, sin,pi
+from sympy import sin, cos, pi, atan
 
 bondLength = []
 
@@ -26,15 +26,29 @@ def animate2D(f: int):
             for bond in bondlist:
                 atom1 = Atom(atomlist[int(bond[3]) - 1])
                 atom2 = Atom(atomlist[int(bond[4]) - 1])
+                if atom2.x - atom1.x != 0:
+                    slope = (atom2.y - atom1.y)/(atom2.x - atom1.x)
+                    degree = atan(slope) * 180 / pi
+                else:
+                    degree = pi/2
                 distance = calculateDistance(atom1.x, atom2.x, atom1.y, atom2.y)
-                extra = OPTIMUM_DISTANCE - distance
-                change = extra/2
+                extra = distance - OPTIMUM_DISTANCE
+
+                print("Atom " + str(int(atom1.id)) + " X:", atom1.x, ", Y:", atom1.y)
+                print("Atom " + str(int(atom2.id)) + " X:", atom2.x, ", Y:", atom2.y)
+                print("Distance: " + str(distance))
+                print("Degree: " + str(degree))
+                print("Extra: " + str(extra))
+
+                x_inc = extra * cos(degree)
+                y_inc = extra * sin(degree)
+
                 # (extra / abs(extra)) * sqrt(abs(extra))
-                angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x) * 180/pi
-                increment_x = change * cos(angle)
-                increment_y = change * sin(angle)
-                atomlist[int(bond[3]) - 1][3:] = [atom1.x + increment_x, atom1.y + increment_y]
-                atomlist[int(bond[4]) - 1][3:] = [atom2.x - increment_x, atom2.y - increment_y]
+
+                # angle = atan2(atom2.y - atom1.y, atom2.x - atom1.x) * 180/pi
+                # increment_x = change * cos(angle)
+                # increment_y = change * sin(angle)
+                atomlist[int(bond[4]) - 1][3:] = [atom2.x + x_inc, atom2.y + y_inc]
 
                 drawer.clear()
                 drawer.buildFromLists(atomlist, bondlist)
